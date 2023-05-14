@@ -18,6 +18,22 @@ public class LC14LongestCommPref {
         return prefix;
     }
 
+    public static String longestCommonPrefix2(String[] strs) {
+        String prefix = strs[0];
+        for (String str : strs) {
+            int minPrefix = Math.min(str.length(), prefix.length());
+            // update prefix
+            prefix = prefix.substring(0, minPrefix);
+            for (int i = 0; i < minPrefix; i++) {
+                if (prefix.charAt(i) != str.charAt(i)) {
+                    prefix = prefix.substring(0, i);
+                    break;
+                }
+            }
+        }
+        return prefix;
+    }
+
     public static void main(String[] args) {
         String prefix = "flower";
         String str1 = "flow";
@@ -27,9 +43,10 @@ public class LC14LongestCommPref {
 //        int startPos = str1.indexOf(prefix);
 //        boolean startPos = str1.contains(prefix);
 //        System.out.println(prefix.contains(str1));
-        System.out.println("flowerfl".indexOf("fl"));
-        System.out.println("flowerfl".lastIndexOf("fl"));
-        System.out.println(prefix.substring(0, prefix.length()-1));
+        System.out.println(LC14LongestCommPref.longestCommonPrefix2(new String[] {"flower", "flow", "flight"}));
+//        System.out.println("flowerfl".indexOf("fl"));
+//        System.out.println("flowerfl".lastIndexOf("fl"));
+//        System.out.println(prefix.substring(0, prefix.length()-1));
     }
 
 }
