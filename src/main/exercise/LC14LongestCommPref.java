@@ -21,11 +21,14 @@ public class LC14LongestCommPref {
     public static String longestCommonPrefix2(String[] strs) {
         String prefix = strs[0];
         for (String str : strs) {
-            int minPrefix = Math.min(str.length(), prefix.length());
+            // min length between current string and assumed prefix
+            int minLen = Math.min(str.length(), prefix.length());
             // update prefix
-            prefix = prefix.substring(0, minPrefix);
-            for (int i = 0; i < minPrefix; i++) {
+            prefix = prefix.substring(0, minLen);
+            // traverse min length, compare between assumed prefix and current string at each char
+            for (int i = 0; i < minLen; i++) {
                 if (prefix.charAt(i) != str.charAt(i)) {
+                    // if compared chars are not the same, then update the prefix at current index
                     prefix = prefix.substring(0, i);
                     break;
                 }
@@ -37,7 +40,6 @@ public class LC14LongestCommPref {
     public static void main(String[] args) {
         String prefix = "flower";
         String str1 = "flow";
-
         // prefix is a substring of str1 starting from index XXX
         //
 //        int startPos = str1.indexOf(prefix);
