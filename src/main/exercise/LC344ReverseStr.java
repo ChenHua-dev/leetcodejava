@@ -7,7 +7,8 @@ public class LC344ReverseStr {
         int left = 0;
         int right = s.length - 1;
 
-        while (left < right) {
+        // loop condition: left <= right
+        while (left <= right) {
             // swap
             char temp = s[left];
             s[left] = s[right];
