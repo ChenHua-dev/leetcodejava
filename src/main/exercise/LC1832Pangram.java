@@ -6,10 +6,10 @@ public class LC1832Pangram {
 
     // this is faster
     public static boolean checkIfPangram(String sentence) {
-        int alphabet = 26;
-        for (int i = 0; i < alphabet; i++) {
-            char currChar = (char) ('a' + i);
-            if (!sentence.contains("" + currChar)) {
+        // traverse 26 alphabets
+        for (int i = 0; i < 26; i++) {
+            char curr = (char) ('a' + i);
+            if (!sentence.contains(Character.toString(curr)) && !sentence.contains(Character.toString(Character.toUpperCase(curr)))) {
                 return false;
             }
         }
@@ -27,8 +27,9 @@ public class LC1832Pangram {
     }
 
     public static void main(String[] args) {
-        String sentence = "thequickbrownfoxjumpsoverthelazydog";
-        boolean pangram = LC1832Pangram.checkIfPangramHashSet(sentence);
+//        String sentence = "thequickbrownfoxjumpsoverthelazydog";
+        String sentence = "TheQuickBrownFoxJumpsOverTheLazyDog";
+        boolean pangram = LC1832Pangram.checkIfPangram(sentence);
         if (!pangram) {
             System.out.println("false");
         } else {
