@@ -5,11 +5,11 @@ import java.util.HashSet;
 public class LC1832Pangram {
 
     // this is faster
-    public static boolean checkIfPangram(String sentence) {
+    public static boolean checkIfPangram(String s) {
         // traverse 26 alphabets
         for (int i = 0; i < 26; i++) {
             char curr = (char) ('a' + i);
-            if (!sentence.contains(Character.toString(curr)) && !sentence.contains(Character.toString(Character.toUpperCase(curr)))) {
+            if (!s.contains(Character.toString(curr)) && !s.contains(Character.toString(Character.toUpperCase(curr)))) {
                 return false;
             }
         }
