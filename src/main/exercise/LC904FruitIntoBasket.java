@@ -11,12 +11,13 @@ public class LC904FruitIntoBasket {
         Map<Integer, Integer> map = new HashMap<>();
         while (right < fruits.length) {
             int currFruit = fruits[right];
-            if (!map.containsKey(currFruit)) {
-                map.put(currFruit, 1);
-            } else {
-                int count = map.get(currFruit);
-                map.put(currFruit, ++count);
-            }
+//            if (!map.containsKey(currFruit)) {
+//                map.put(currFruit, 1);
+//            } else {
+//                int count = map.get(currFruit);
+//                map.put(currFruit, ++count);
+//            }
+            map.put(currFruit, map.getOrDefault(currFruit, 0) + 1);
             if (map.size() > k) {
                 int leftFruit = fruits[left];
                 int leftCount = map.get(leftFruit);

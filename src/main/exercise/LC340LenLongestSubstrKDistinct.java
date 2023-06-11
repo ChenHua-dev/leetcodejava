@@ -10,12 +10,13 @@ public class LC340LenLongestSubstrKDistinct {
         int left = 0, right = 0;
         while (right < s.length()) {
             char currChar = s.charAt(right);
-            if (!map.containsKey(currChar)) {
-                map.put(currChar, 1);
-            } else {
-                int count = map.get(currChar);
-                map.put(currChar, ++count);
-            }
+//            if (!map.containsKey(currChar)) {
+//                map.put(currChar, 1);
+//            } else {
+//                int count = map.get(currChar);
+//                map.put(currChar, ++count);
+//            }
+            map.put(currChar, map.getOrDefault(currChar, 0) + 1);
             if (map.size() > k) {
                 int currCount = map.get(s.charAt(left));
                 if (currCount > 1) {
