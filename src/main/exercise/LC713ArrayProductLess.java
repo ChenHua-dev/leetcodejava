@@ -3,18 +3,21 @@ package exercise;
 public class LC713ArrayProductLess {
 
     public static int numSubarrayProductLessThanK (int[] nums, int k) {
-        int n = nums.length;
+        if (k <= 1) return 0;
         int counter = 0;
         int L = 0, R = 0;
         int prod = 1;
-
-        while (R < n) {
+        while (R < nums.length) {
             prod = prod * nums[R];
-            while (L <= R && prod >= k) {
-                prod = prod / nums[L];
-                L++;
+            if (prod < k) {
+                counter += R - L + 1;
+            } else {
+                while (prod >= k) {
+                    prod = prod / nums[L];
+                    L++;
+                }
+                counter += R - L + 1;
             }
-            counter += (R - L + 1); // 1 | 2 | ... | n
             R++;
         }
         return counter;
@@ -26,5 +29,25 @@ public class LC713ArrayProductLess {
         System.out.println(LC713ArrayProductLess.numSubarrayProductLessThanK(new int[] {2, 5, 3, 10}, 30)); // expect 6
         System.out.println(LC713ArrayProductLess.numSubarrayProductLessThanK(new int[] {8, 2, 6, 5}, 50)); // expect 7
         System.out.println(LC713ArrayProductLess.numSubarrayProductLessThanK(new int[] {1,2,3}, 1)); // expect 0
+        System.out.println(LC713ArrayProductLess.numSubarrayProductLessThanK(new int[] {1,1,1}, 1)); // expect 0
     }
+
+//    public static int numSubarrayProductLessThanK (int[] nums, int k) {
+//        int n = nums.length;
+//        int counter = 0;
+//        int L = 0, R = 0;
+//        int prod = 1;
+//
+//        while (R < n) {
+//            prod = prod * nums[R];
+//            while (L <= R && prod >= k) {
+//                prod = prod / nums[L];
+//                L++;
+//            }
+//            counter += (R - L + 1); // 1 | 2 | ... | n
+//            R++;
+//        }
+//        return counter;
+//    }
+
 }
