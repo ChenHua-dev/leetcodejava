@@ -1,37 +1,33 @@
 package exercise;
 
 public class LC76MinWindowSubstr {
-
     public static String minWindow(String s, String t) {
         String minLenStr = "";
-        int minLen = Integer.MAX_VALUE;
-        int left = 0, right = 0;
-        int countAllCharInT = 0;
-        int[] map = new int[128];
-        //Set up the table
-        for(char c : t.toCharArray()){
-            map[c]++;
+        int minLen = Integer.MAX_VALUE, left = 0, right = 0;
+        int countAllCharInStrT = 0;
+        int[] mapStrT = new int[128];
+        //Set up the table for string <t>
+        char[] tArray = t.toCharArray();
+        for (char c : tArray) {
+            mapStrT[c]++;
         }
 
-        char[] arr = s.toCharArray();
-        while(right < s.length()){
+        while (right < s.length()) {
             //Expand the window
-            map[arr[right]]--;
-            if(0 <= map[arr[right]]){
-                countAllCharInT++;
-            }
+            char charRight = s.charAt(right);
+            mapStrT[charRight]--;
+            if(mapStrT[charRight] >= 0) countAllCharInStrT++;
             //Shrink the window if current window contains all the char in t
-            while(countAllCharInT == t.length()){
+            while(countAllCharInStrT == t.length()){
                 //Update the minLen
-                if(minLen > right - left + 1){
+                if(minLen > right - left + 1) {
                     minLen = right - left + 1;
                     minLenStr = s.substring(left, right + 1);
                 }
                 //Shrink the window
-                map[arr[left]]++;
-                if(0 < map[arr[left]]){
-                    countAllCharInT--;
-                }
+                char charLeft = s.charAt(left);
+                mapStrT[charLeft]++;
+                if(mapStrT[charLeft] > 0) countAllCharInStrT--;
                 left++;
             }
             right++;
@@ -40,6 +36,8 @@ public class LC76MinWindowSubstr {
     }
 
     public static void main(String[] args) {
-
+        System.out.println(minWindow("ADOBECODEBANC", "ABC")); // expect "BANC"
+        System.out.println(minWindow("a", "a")); // expect "a"
+        System.out.println(minWindow("a", "aa")); // expect ""
     }
 }
