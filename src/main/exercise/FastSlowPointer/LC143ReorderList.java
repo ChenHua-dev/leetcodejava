@@ -1,4 +1,4 @@
-package exercise;
+package exercise.FastSlowPointer;
 
 import model.ListNode;
 

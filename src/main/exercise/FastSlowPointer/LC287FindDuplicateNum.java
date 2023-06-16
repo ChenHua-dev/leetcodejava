@@ -1,6 +1,6 @@
-package exercise;
+package exercise.FastSlowPointer;
 
-public class LC287DuplicateNum {
+public class LC287FindDuplicateNum {
 
     public static int findDuplicate(int[] nums) {
         int dup = -1;
