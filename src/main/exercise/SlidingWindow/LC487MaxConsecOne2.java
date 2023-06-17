@@ -1,4 +1,4 @@
-package exercise;
+package exercise.SlidingWindow;
 
 /**
  * Given a binary array nums,

@@ -1,4 +1,4 @@
-package exercise;
+package exercise.SlidingWindow;
 
 public class LC209MinSubArrSum {
     public static int minSubArrayLen(int target, int[] nums) {

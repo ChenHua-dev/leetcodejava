@@ -1,4 +1,4 @@
-package exercise;
+package exercise.SlidingWindow;
 
 public class LC53MaxSubarr {
     public static int maxSubArray(int[] nums) {
