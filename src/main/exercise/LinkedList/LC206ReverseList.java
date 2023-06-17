@@ -28,8 +28,10 @@ public class LC206ReverseList {
         n2.next = n3;
         n3.next = n4;
         ListNode head = n1;
+        ListNode h3 = ListNode.createLLFromArray(new int[] {3,5});
         System.out.println(ListNode.displayLinkedList(head));
         System.out.println(ListNode.displayLinkedList(LC206ReverseList.reverseList(head)));
+        System.out.println(ListNode.displayLinkedList(LC206ReverseList.reverseList(h3)));
     }
 
 }
