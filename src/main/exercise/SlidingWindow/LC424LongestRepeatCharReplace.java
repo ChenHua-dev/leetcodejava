@@ -4,6 +4,37 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LC424LongestRepeatCharReplace {
+//    public static int characterReplacement(String s, int k) {
+//        int longest = 0, mostFreq = 0, windowLen;
+//        int left = 0, right = 0;
+//        Map<Character, Integer> map = new HashMap<>();
+//
+//        while (right < s.length()) {
+//            char currChar = s.charAt(right);
+//            if (!map.containsKey(currChar)) {
+//                map.put(currChar, 1);
+//            } else {
+//                int charCount = map.get(currChar);
+//                map.put(currChar, ++charCount);
+//            }
+//            // map.put(currChar, map.getOrDefault(currChar, 0) + 1);
+//            windowLen = right - left + 1;
+//            // most frequent count of a given char within the window
+//            int currCount = map.get(currChar);
+//            mostFreq = Math.max(mostFreq, currCount);
+//            // number of replacement within the window
+//            int numReplace = windowLen - mostFreq;
+//            if (numReplace > k) {
+//                char leftChar = s.charAt(left);
+//                int leftCount = map.get(leftChar);
+//                map.put(leftChar, --leftCount);
+//                left++;
+//            }
+//            longest = Math.max(longest, right - left + 1);
+//            right++;
+//        }
+//        return longest;
+//    }
 
     public static int characterReplacement(String s, int k) {
         int longest = 0, mostFreq = 0, windowLen;
@@ -12,24 +43,19 @@ public class LC424LongestRepeatCharReplace {
 
         while (right < s.length()) {
             char currChar = s.charAt(right);
-            if (!map.containsKey(currChar)) {
-                map.put(currChar, 1);
-            } else {
-                int charCount = map.get(currChar);
-                map.put(currChar, ++charCount);
-            }
-            // map.put(currChar, map.getOrDefault(currChar, 0) + 1);
-            windowLen = right - left + 1;
+            map.put(currChar, map.getOrDefault(currChar, 0) + 1);
             // most frequent count of a given char within the window
-            int currCount = map.get(currChar);
-            mostFreq = Math.max(mostFreq, currCount);
+            mostFreq = Math.max(mostFreq, map.get(currChar));
             // number of replacement within the window
+            windowLen = right - left + 1;
             int numReplace = windowLen - mostFreq;
-            if (numReplace > k) {
+            while (numReplace > k) {
                 char leftChar = s.charAt(left);
-                int leftCount = map.get(leftChar);
-                map.put(leftChar, --leftCount);
+                map.put(leftChar, map.get(leftChar) - 1);
+                // decrementing left pointer, then update window size
                 left++;
+                windowLen = right - left + 1;
+                numReplace = windowLen - mostFreq;
             }
             longest = Math.max(longest, right - left + 1);
             right++;
