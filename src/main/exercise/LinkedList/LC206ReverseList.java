@@ -7,10 +7,9 @@ public class LC206ReverseList {
     public static ListNode reverseList(ListNode head) {
         ListNode revHead = null;
         ListNode curr = head;
-        ListNode temp = null;
 
         while (curr != null) {
-            temp = curr.next;
+            ListNode temp = curr.next;
             curr.next = revHead;
             revHead = curr;
             curr = temp;
